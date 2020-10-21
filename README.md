@@ -40,8 +40,8 @@ POST /user
 
 [
   {
-    "name": "j2",
-    "email": "james@jame3s.com",
+    "name": "james james",
+    "email": "james@james.com",
     "meta": {
       "isVerified": true,
       "isExpired": false,

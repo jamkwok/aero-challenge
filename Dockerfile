@@ -15,7 +15,7 @@ COPY package*.json ./
 RUN npm install --only=production
 COPY --from=0 /usr/src/app/dist ./dist/src
 
-# Required for Time Zone database lookups
+# Required for Time Zone
 RUN apk add tzdata
 
 # Set up timezone and locale for proper date format etc.
