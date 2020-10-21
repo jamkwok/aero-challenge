@@ -76,20 +76,13 @@ Get /users
 
 While the endpoints are protected by an access token they do not validate user role or id,
 this can be changed to prepare the application for production so these are also checked. For
-this challenge roles and ids are ignored as a shortcut. The JWT secret will need sourced
-from a secure place, Kubernetes can mount secrets, or Hashicorp vault could be used,
+this challenge roles and ids are ignored as a shortcut. The JWT secret will need to be sourced
+from a secure place, Kubernetes can mount secrets or Hashicorp vault could be used,
 
-For the challenge a mocked database, it was written as promise functions because sequelize or
-mongoose also provide promise functions, no real rewrite of the upper layers are required if sequelize
-is implemented. Sequelize is preferred as it abstracts the database from the code but also
-is also compatible with a range of sql databases. While NoSQL can be used, it can be seen this
-product will likely need property querying and relationships in the future. SQL is much better suited
-to this task. A real database is needed because the in memory implementation will not persist,
-especially on Kubernetes where pods are often moved around hosts for scaling and efficiency.
+For the challenge a mocked database, it was written as promise functions because sequelize and
+mongoose both provide promise functionality, no real rewrite of the upper layers are required if sequelize is implemented. Sequelize is preferred as it creates a database abstraction via code and is also compatible with a range of sql databases such as AWS Aurora. While NoSQL can be used, it can be seen this product will likely need property querying and relationships in the future. SQL is much better suited to this task. A real database is needed because the in memory implementation will not persist app shutdown, especially on Kubernetes where pods are often moved around hosts for scaling and efficiency.
 
-Depending on usage and frequency of user upsert, Redis caching can also be added for the GET
-users requests, but this will depend on production use case.
+Depending on usage and frequency of user creation, Redis caching can also be added for the GET
+users requests, but this will depend on the production use cases. As logic gets more complicated the application layer should be split into application and domain layers to encapsulate app and enterprise logic respectively.
 
-As logic gets more complicated the application layer should be split into application and domain layers to encapsulate app and enterprise logic respectively.
-
-Finally for production besides creating and listing new users, a third patch endpoint or using the existing POST endpoint to allow for the modification of users will be required as updates will be a highly sought after feature. To complete the CRUD acronym, a Delete method endpoint will also be needed making this service sufficiently functional.
+Finally for the app to be production ready besides creating and listing new users, updating users is required. A third patch endpoint or using the existing POST endpoint to allow for the modification of users will be required as updates will be a highly sought after feature. To complete the CRUD acronym, a Delete method endpoint will also be needed to make this service sufficiently functional.
