@@ -5,7 +5,7 @@ THis app is the early beginning of a CRUD service. The following app fetches a l
 ## Architectural challenge
 
 ```
-
+https://github.com/jamkwok/aero-challenge/blob/main/Propellor%20Aero.pdf
 ```
 
 ## Docker Instructions via swagger
