@@ -11,6 +11,7 @@ import { NewUser } from "../application/models/NewUser";
 const router = express.Router();
 
 router.get("/users", decodeJwt, async (req : Request, res: Response, next: NextFunction): Promise<any> => {
+    
     try {
         const users = await getUsers();
         return res.json(users);
@@ -18,16 +19,25 @@ router.get("/users", decodeJwt, async (req : Request, res: Response, next: NextF
         logger.error("error", err);
         return next(err);
     }
+
 });
 
 router.post("/users", decodeJwt, [
     body().isArray(),
     body('*.name', 'name must be a string').exists().notEmpty().isString().trim().escape(), // Sanitization
     body('*.email', 'email field must be an email').exists().isEmail().normalizeEmail(),
-    body('*.meta.isVerified', 'meta.isVerified field must be boolean').exists().isBoolean(),
-    body('*.meta.isExpired', 'meta.isExpired field must be boolean').optional().isBoolean(), // Optional bool
+    body('*.meta.isVerified', 'meta.isVerified field must be boolean').custom((value) => {
+        // .optional({falsey: true}) typescript bug
+        if (value === undefined || typeof value === "boolean") return true;
+        throw new Error('isVerified must be boolean when set');
+    }),
+    body('*.meta.isExpired', 'meta.isExpired field must be boolean').custom((value) => {
+        if (value === undefined || typeof value === "boolean") return true;
+        throw new Error('isExpired must be boolean when set');
+    }),
     body('*.meta.addedOn', 'meta.addedOn field must be a string').exists().notEmpty().isString().trim().escape(), // Sanitization
   ], async (req : Request, res: Response, next: NextFunction): Promise<any> => {
+
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -40,6 +50,7 @@ router.post("/users", decodeJwt, [
         logger.error("error", err);
         return next(err);
     }
+
 });
 
 export default router;
