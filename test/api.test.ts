@@ -176,7 +176,7 @@ describe('POST /users', () => {
     expect(mockedPostUsers).toHaveBeenCalledTimes(0);
   });
 
-  it('should return 400 when meta field', async () => {
+  it('should return 400 when meta field is missing', async () => {
     await request(app)
       .post('/users')
       .set('Authorization', 'Bearer ' + token)
