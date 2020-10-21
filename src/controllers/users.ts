@@ -28,7 +28,7 @@ router.post(
   '/users',
   decodeJwt,
   [
-    body().isArray(),
+    body().isArray().notEmpty(),
     body('*.name', 'name must be a string')
       .exists()
       .notEmpty()

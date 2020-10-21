@@ -238,4 +238,13 @@ describe('POST /users', () => {
       .expect(400);
     expect(mockedPostUsers).toHaveBeenCalledTimes(0);
   });
+
+  it('should return 400 when user creation list empty', async () => {
+    await request(app)
+      .post('/users')
+      .set('Authorization', 'Bearer ' + token)
+      .send([])
+      .expect(400);
+    expect(mockedPostUsers).toHaveBeenCalledTimes(0);
+  });
 });
