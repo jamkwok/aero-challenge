@@ -53,7 +53,7 @@ npm start
 **Step 3: Make a Postman Post request with the above JWT**
 
 ```
-POST /user
+POST /users
 
 [
   {
