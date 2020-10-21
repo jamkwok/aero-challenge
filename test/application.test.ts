@@ -1,10 +1,10 @@
 import { mocked } from 'ts-jest/utils';
 import { postUsers } from '../src/application/users';
-import { getEntityUsers, postEntityUsers } from '../src/infrastructure/datastoreUsers';
+import { getEntityUsers, createEntityUsers } from '../src/infrastructure/datastoreUsers';
 
 jest.mock('../src/infrastructure/datastoreUsers', () => {
   return {
-    postEntityUsers: jest.fn().mockImplementation(() => {
+    createEntityUsers: jest.fn().mockImplementation(() => {
       return new Promise((resolve) => resolve());
     }),
     getEntityUsers: jest.fn().mockImplementation(() => {
@@ -28,11 +28,11 @@ jest.mock('../src/infrastructure/datastoreUsers', () => {
 
 describe('GET /users', () => {
   const mockedGetEntityUsers = mocked(getEntityUsers, true);
-  const mockedPostEntityUsers = mocked(postEntityUsers, true);
+  const mockedCreateEntityUsers = mocked(createEntityUsers, true);
 
   beforeEach(() => {
     mockedGetEntityUsers.mockClear();
-    mockedPostEntityUsers.mockClear();
+    mockedCreateEntityUsers.mockClear();
   });
 
   it('should create with unique email', async () => {
@@ -50,7 +50,7 @@ describe('GET /users', () => {
       ]);
     } finally {
       expect(mockedGetEntityUsers).toHaveBeenCalledTimes(1);
-      expect(mockedPostEntityUsers).toHaveBeenCalledTimes(1);
+      expect(mockedCreateEntityUsers).toHaveBeenCalledTimes(1);
     }
   });
 
@@ -69,7 +69,7 @@ describe('GET /users', () => {
       ]);
     } catch {
       expect(mockedGetEntityUsers).toHaveBeenCalledTimes(1);
-      expect(mockedPostEntityUsers).toHaveBeenCalledTimes(0);
+      expect(mockedCreateEntityUsers).toHaveBeenCalledTimes(0);
     }
   });
 });

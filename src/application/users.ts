@@ -1,5 +1,5 @@
 import { UserEntity } from '../infrastructure/Entities/User';
-import { getEntityUsers, postEntityUsers } from '../infrastructure/datastoreUsers';
+import { getEntityUsers, createEntityUsers } from '../infrastructure/datastoreUsers';
 import { BadRequestException } from '../util/errors';
 import logger from '../util/logger';
 import { NewUser } from './models/NewUser';
@@ -35,7 +35,7 @@ export const postUsers = async (users: NewUser[]): Promise<void> => {
     throw new BadRequestException('emails not unique');
   }
 
-  await postEntityUsers(
+  await createEntityUsers(
     users.map((user) => {
       return <UserEntity>{
         name: user.name,
