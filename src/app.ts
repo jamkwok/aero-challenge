@@ -26,6 +26,9 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Controllers
 app.use(userController);
+app.use('*', (req: Request, res: Response) => {
+  return res.status(404).json({ error: 'Not Found' });
+});
 
 // Error Handler
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {

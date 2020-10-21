@@ -43,6 +43,14 @@ describe('GET /users', () => {
     expect(mockedGetUsers).toHaveBeenCalledTimes(0);
   });
 
+  it('should return 404 when incorrect route used', async () => {
+    await request(app)
+      .get('/usersssssssss')
+      .set('Authorization', 'Bearer ' + token)
+      .expect(404);
+    expect(mockedGetUsers).toHaveBeenCalledTimes(0);
+  });
+
   it('should return 200 with JWT', async () => {
     await request(app)
       .get('/users')
