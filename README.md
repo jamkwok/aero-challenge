@@ -32,9 +32,10 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 ## Instructions for Vanilla startup
 
-**Step 1: Install packages**
+**Step 1: Copy env file and install packages**
 
 ```
+cp .env.example .env
 npm install
 ```
 
