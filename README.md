@@ -22,4 +22,46 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 **Step 5: Try Getting an array of users**
 
+## Instructions for Vanilla startup
+
+**Step 1: Install packages**
+npm install
+
+**Step 2: Test app**
+npm test
+
+**Step 3: Run app**
+npm start
+
+**Step 3: Make a Postman Post request with the above JWT**
+
+```
+POST /user
+
+[
+  {
+    "name": "j2",
+    "email": "james@jame3s.com",
+    "meta": {
+      "isVerified": true,
+      "isExpired": false,
+      "addedOn": "addedOn"
+    }
+  }
+]
+
+```
+
+**Step 3: Make a Postman Get request with the above JWT and observe users created in earlier step**
+
+```
+Get /users
+
+```
+
+## Production discussion
+
+While the endpoints are protected by an access token they do not validate user role or id,
+this can be changed to prepare the application for production so these are also checked.
+
 Shortcuts check for specific role and userId in Jwt
