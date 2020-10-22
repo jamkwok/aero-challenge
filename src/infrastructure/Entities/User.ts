@@ -6,7 +6,7 @@ export type UserEntity = {
 };
 
 export type Meta = {
-  isVerified: boolean;
+  isVerified?: boolean;
   isExpired?: boolean;
   addedOn: string;
 };
