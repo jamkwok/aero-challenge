@@ -89,7 +89,8 @@ For the challenge a mocked database, it was written as promise functions because
 mongoose both provide promise functionality, no real rewrite of the upper layers are required if sequelize is implemented. Sequelize is preferred as it creates a database abstraction via code and is also compatible with a range of sql databases such as AWS Aurora. While NoSQL can be used, it can be seen this product will likely need property querying and relationships in the future. SQL is much better suited to this task. A real database is needed because the in memory implementation will not persist app shutdown, especially on Kubernetes where pods are often moved around hosts for scaling and efficiency.
 
 Depending on usage and frequency of user creation, Redis caching can also be added for the GET
-users requests, but this will depend on the production use cases. As logic gets more complicated the application layer should be split into application and domain layers to encapsulate app and enterprise logic respectively.
+users requests, but this will depend on the production use cases. As logic gets more complicated the application layer should be split into application and domain layers to encapsulate app and enterprise logic respectively. For fetching individual users,
+an extra route param can be constructed /users/user/:userid to make the app production ready.
 
 Finally for the app to be production ready besides creating and listing new users, updating users is required. A third patch endpoint or using the existing POST endpoint to allow for the modification of users will be required as updates will be a highly sought after feature. To complete the CRUD acronym, a Delete method endpoint will also be needed to make this service sufficiently functional.
 
