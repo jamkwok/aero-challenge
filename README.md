@@ -1,6 +1,6 @@
 # P Aero Challenge User app
 
-THis app is the early beginning of a CRUD service. The following app fetches a list of users but also can create a list of users, assuming the emails are unique and do not exist in the in memory datastore. The in memory datastore will uniquely generate ids.
+This app is the early beginning of a CRUD service. The following app fetches a list of users but also can create a list of users, assuming the emails are unique and do not exist in the in memory datastore. The in memory datastore will uniquely generate ids.
 
 ## Architectural challenge
 
