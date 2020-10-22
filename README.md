@@ -82,7 +82,8 @@ Get /users
 While the endpoints are protected by an access token they do not validate user role or id,
 this can be changed to prepare the application for production so these are also checked. For
 this challenge roles and ids are ignored as a shortcut. The JWT secret will need to be sourced
-from a secure place, Kubernetes can mount secrets or Hashicorp vault could be used,
+from a secure place, Kubernetes can mount secrets or Hashicorp vault could be used. For production
+we should use the relevant public key to verify signature when integrating with Auth0 or Identity provider server which give us the JWT.
 
 For the challenge a mocked database, it was written as promise functions because sequelize and
 mongoose both provide promise functionality, no real rewrite of the upper layers are required if sequelize is implemented. Sequelize is preferred as it creates a database abstraction via code and is also compatible with a range of sql databases such as AWS Aurora. While NoSQL can be used, it can be seen this product will likely need property querying and relationships in the future. SQL is much better suited to this task. A real database is needed because the in memory implementation will not persist app shutdown, especially on Kubernetes where pods are often moved around hosts for scaling and efficiency.
