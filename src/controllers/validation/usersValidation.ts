@@ -7,7 +7,7 @@ export const postUsersValidation = [
       .isString()
       .trim()
       .escape(), // Sanitization
-    body('*.email', 'email field must be an email').exists().isEmail().normalizeEmail(),
+    body('*.email', 'email field must be an email').exists().trim().isEmail().normalizeEmail(),
     body('*.meta.isVerified', 'meta.isVerified field must be boolean').custom((value) => {
       // .optional({falsey: true}) typescript bug
       if (value === undefined || typeof value === 'boolean') return true;
