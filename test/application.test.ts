@@ -26,7 +26,7 @@ jest.mock('../src/infrastructure/datastoreUsers', () => {
   };
 });
 
-describe('GET /users', () => {
+describe('POST /users', () => {
   const mockedGetEntityUsers = mocked(getEntityUsers, true);
   const mockedCreateEntityUsers = mocked(createEntityUsers, true);
 
