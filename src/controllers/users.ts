@@ -1,3 +1,5 @@
+"use strict";
+
 import { Request, Response, NextFunction } from 'express';
 import decodeJwt from '../util/decodeJwt';
 
