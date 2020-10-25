@@ -1,3 +1,5 @@
+"use strict";
+
 import { UserEntity } from '../infrastructure/Entities/User';
 import { getEntityUsers, createEntityUsers } from '../infrastructure/datastoreUsers';
 import { BadRequestException } from '../util/errors';

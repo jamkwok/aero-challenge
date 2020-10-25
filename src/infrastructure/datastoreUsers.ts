@@ -1,3 +1,5 @@
+"use strict";
+
 import { UserEntity } from './Entities/User';
 let inMemoryDatabase: UserEntity[] = [];
 
